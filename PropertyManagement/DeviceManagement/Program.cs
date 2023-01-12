@@ -1,22 +1,15 @@
 using DeviceManagement.Data;
+using DeviceManagement.IOC;
 using DeviceManagement.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddGrpc(options =>
-{
-    options.EnableDetailedErrors = true;
-});
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-// builder.Services.AddScoped<DeviceService>();
-builder.Services.AddDbContext<ApplicationDbContext>();
-builder.Services.AddScoped<DeviceService>();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//extra configuration
+await builder.Services.Register(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
