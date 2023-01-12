@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9S9vbcNH8ryNf3R0hi7WkNEld2QE/5qPlbtJNx3LDGDYufXVQydcJwnT+vndrITs/nDdZ59eD5D7EFWctfjmQQ==",
+  "dgSpecHash": "XturVhwOFXLFXbQ+vahNk3vfIM+GTgxn3l5Jq+Zi3t3PvrOGB3v5Bq4zwAAv/G8xMNv3klHcriZjeOW95mJ0aQ==",
   "success": true,
-  "projectFilePath": "/home/kiennt/IT3943-Project-III/PropertyManagement/AuthService/AuthService.csproj",
+  "projectFilePath": "/home/kiennt/IT3943-Project-III/PropertyManagement/RealEstateService/RealEstateService.csproj",
   "expectedPackageFiles": [
     "/home/kiennt/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/home/kiennt/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",

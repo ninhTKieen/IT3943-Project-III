@@ -229,11 +229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/kiennt/IT3943-Project-III/PropertyManagement/AuthService/AuthService.csproj",
-      "projectName": "AuthService",
-      "projectPath": "/home/kiennt/IT3943-Project-III/PropertyManagement/AuthService/AuthService.csproj",
+      "projectUniqueName": "/home/kiennt/IT3943-Project-III/PropertyManagement/RealEstateService/RealEstateService.csproj",
+      "projectName": "RealEstateService",
+      "projectPath": "/home/kiennt/IT3943-Project-III/PropertyManagement/RealEstateService/RealEstateService.csproj",
       "packagesPath": "/home/kiennt/.nuget/packages/",
-      "outputPath": "/home/kiennt/IT3943-Project-III/PropertyManagement/AuthService/obj/",
+      "outputPath": "/home/kiennt/IT3943-Project-III/PropertyManagement/RealEstateService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/kiennt/.nuget/NuGet/NuGet.Config"
