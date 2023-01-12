@@ -16,15 +16,16 @@ public class Device
     public string Position { get; set; }
     public int Cost { get; set; }
     public string Origin { get; set; }
-    public string Status { get; set; }
+    public int Status { get; set; }
     public string Type { get; set; }
     public string Brand { get; set; }
     public string Owner { get; set; }
-    
-    public DateTime PurchaseDate { get; set; }
+    public string Manager { get; set; }
+
+    public DateTime? PurchaseDate { get; set; }
     public DateTime? WarrantyDate { get; set; }
     public DateTime? LastServiceDate { get; set; }
-    public DateTime InstallationDate { get; set; }
+    public DateTime? InstallationDate { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     

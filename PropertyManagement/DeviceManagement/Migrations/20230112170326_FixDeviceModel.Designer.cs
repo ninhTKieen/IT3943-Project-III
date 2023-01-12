@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeviceManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230112160826_FixDeviceModel")]
+    [Migration("20230112170326_FixDeviceModel")]
     partial class FixDeviceModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,9 @@ namespace DeviceManagement.Migrations
                     b.Property<float>("Longitude")
                         .HasColumnType("float");
 
+                    b.Property<string>("Manager")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -73,8 +76,8 @@ namespace DeviceManagement.Migrations
                     b.Property<string>("Sku")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .HasColumnType("longtext");

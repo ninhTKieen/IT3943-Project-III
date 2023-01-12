@@ -52,6 +52,9 @@ namespace DeviceManagement.Migrations
                     b.Property<float>("Longitude")
                         .HasColumnType("float");
 
+                    b.Property<string>("Manager")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -71,8 +74,8 @@ namespace DeviceManagement.Migrations
                     b.Property<string>("Sku")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .HasColumnType("longtext");
