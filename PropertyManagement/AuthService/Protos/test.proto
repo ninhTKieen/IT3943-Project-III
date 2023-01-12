@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "DeviceManagement";
+
+service GrpcTest {
+  rpc GetAllPlatforms (GetAllRequest) returns (Test);
+}
+
+message GetAllRequest {}
+
+message GrpcTestModel{
+  int32 platformId = 1;
+  string name = 2;
+  string publisher = 3;
+}
+
+message Test {
+  repeated GrpcTestModel platform = 1;
+}
+

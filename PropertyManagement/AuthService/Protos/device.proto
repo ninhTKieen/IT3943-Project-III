@@ -1,0 +1,17 @@
+syntax = "proto3";
+option csharp_namespace = "AuthService";
+
+service GrpcDevice {
+  rpc getDevice (GetAllDeviceRequest) returns (GetAllResponse) {};
+}
+
+message GetAllDeviceRequest{}
+
+message GrpcDeviceModel{
+  int32 id = 1;
+  string name = 2;
+}
+
+message GetAllResponse {
+  repeated GrpcDeviceModel devices = 1;
+}
