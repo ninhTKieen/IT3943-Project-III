@@ -22,10 +22,10 @@ public class Device
     public string Owner { get; set; }
     public string Manager { get; set; }
 
-    public DateTime? PurchaseDate { get; set; }
-    public DateTime? WarrantyDate { get; set; }
-    public DateTime? LastServiceDate { get; set; }
-    public DateTime? InstallationDate { get; set; }
+    public DateTime PurchaseDate { get; set; }
+    public DateTime WarrantyDate { get; set; }
+    public DateTime LastServiceDate { get; set; }
+    public DateTime InstallationDate { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     
