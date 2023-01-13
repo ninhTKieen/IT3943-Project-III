@@ -17,5 +17,10 @@ public class DeviceProfile:Profile
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.Now))
             .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.Now))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => DeviceStatus.Working));
+        
+        CreateMap<DeviceUpdateDto, Device>()
+            .ForMember(dest=>dest.UpdatedAt, opt=> opt.MapFrom(src=>DateTime.Now))
+            .ForAllMembers(opt=>opt.Condition((src, dest, srcMember)=> srcMember != null))
+            ;
     }
 }

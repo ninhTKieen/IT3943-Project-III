@@ -26,4 +26,28 @@ public class DeviceService
         await _context.SaveChangesAsync();
         return device;
     }
+
+    public async Task<Device> GetById(int id)
+    {
+        return await _context.Devices.FindAsync(id);
+    }
+    
+    public async Task<List<Device>> GetAll()
+    {
+        return await _context.Devices.ToListAsync();
+    }
+    
+    public async Task<Device> Update(Device device)
+    {
+        var test = _context.Devices.Update(device);
+        Console.WriteLine("test: " + test);
+        await _context.SaveChangesAsync();
+        return device;
+    }
+    
+    public async Task Delete(Device device)
+    {
+        _context.Devices.Remove(device);
+        await _context.SaveChangesAsync();
+    }
 }
