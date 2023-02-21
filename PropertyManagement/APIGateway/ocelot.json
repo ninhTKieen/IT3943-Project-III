@@ -1,0 +1,31 @@
+{
+    "Routes": [
+        {
+            "UpstreamHttpMethod": [ "Get" ],
+            "UpstreamPathTemplate": "/api/device",
+            "DownstreamPathTemplate": "/api/device",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5002
+                }
+            ],
+            "SwaggerKey": "Device"
+        }
+    ],
+    "SwaggerEndPoints": [
+        {
+            "Key": "Device",
+            "Config": [
+                {
+                    "Name": "Device API",
+                    "Version": "v1",
+                    "Url": "http://localhost:5002/swagger/v1/swagger.json"
+                }
+            ]
+        }
+    ],
+    "GlobalConfiguration": {}
+    
+}

@@ -24,7 +24,7 @@ public static class ExtraConfigurations
         
         //add service
         services.AddScoped<DeviceService>();
-        
+        services.AddScoped<MaintenanceService>();
     }
 
     private static void ConfigureSwagger(this IServiceCollection serviceCollection, IConfiguration configuration)

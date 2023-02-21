@@ -7,7 +7,7 @@
 
 using grpc = global::Grpc.Core;
 
-namespace AuthService {
+namespace AuthService.Protos {
   public static partial class GrpcDevice
   {
     static readonly string __ServiceName = "GrpcDevice";
@@ -46,22 +46,22 @@ namespace AuthService {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::AuthService.GetAllDeviceRequest> __Marshaller_GetAllDeviceRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::AuthService.GetAllDeviceRequest.Parser));
+    static readonly grpc::Marshaller<global::AuthService.Protos.GetDeviceRequest> __Marshaller_GetDeviceRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::AuthService.Protos.GetDeviceRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::AuthService.GetAllResponse> __Marshaller_GetAllResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::AuthService.GetAllResponse.Parser));
+    static readonly grpc::Marshaller<global::AuthService.Protos.GetDeviceResponse> __Marshaller_GetDeviceResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::AuthService.Protos.GetDeviceResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::AuthService.GetAllDeviceRequest, global::AuthService.GetAllResponse> __Method_getDevice = new grpc::Method<global::AuthService.GetAllDeviceRequest, global::AuthService.GetAllResponse>(
+    static readonly grpc::Method<global::AuthService.Protos.GetDeviceRequest, global::AuthService.Protos.GetDeviceResponse> __Method_getDevice = new grpc::Method<global::AuthService.Protos.GetDeviceRequest, global::AuthService.Protos.GetDeviceResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "getDevice",
-        __Marshaller_GetAllDeviceRequest,
-        __Marshaller_GetAllResponse);
+        __Marshaller_GetDeviceRequest,
+        __Marshaller_GetDeviceResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::AuthService.DeviceReflection.Descriptor.Services[0]; }
+      get { return global::AuthService.Protos.DeviceReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Client for GrpcDevice</summary>
@@ -92,22 +92,22 @@ namespace AuthService {
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::AuthService.GetAllResponse getDevice(global::AuthService.GetAllDeviceRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::AuthService.Protos.GetDeviceResponse getDevice(global::AuthService.Protos.GetDeviceRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return getDevice(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::AuthService.GetAllResponse getDevice(global::AuthService.GetAllDeviceRequest request, grpc::CallOptions options)
+      public virtual global::AuthService.Protos.GetDeviceResponse getDevice(global::AuthService.Protos.GetDeviceRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_getDevice, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::AuthService.GetAllResponse> getDeviceAsync(global::AuthService.GetAllDeviceRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::AuthService.Protos.GetDeviceResponse> getDeviceAsync(global::AuthService.Protos.GetDeviceRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return getDeviceAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::AuthService.GetAllResponse> getDeviceAsync(global::AuthService.GetAllDeviceRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::AuthService.Protos.GetDeviceResponse> getDeviceAsync(global::AuthService.Protos.GetDeviceRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_getDevice, null, options, request);
       }

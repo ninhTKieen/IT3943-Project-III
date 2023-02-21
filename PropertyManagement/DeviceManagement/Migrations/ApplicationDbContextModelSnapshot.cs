@@ -43,7 +43,7 @@ namespace DeviceManagement.Migrations
                     b.Property<DateTime>("InstallationDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime?>("LastServiceDate")
+                    b.Property<DateTime>("LastServiceDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<float>("Latitude")
@@ -83,12 +83,74 @@ namespace DeviceManagement.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime?>("WarrantyDate")
+                    b.Property<DateTime>("WarrantyDate")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("DeviceManagement.Models.MaintenanceHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("DeviceId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Expenses")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeviceId");
+
+                    b.ToTable("MaintenanceHistories");
+                });
+
+            modelBuilder.Entity("DeviceManagement.Models.MaintenanceHistory", b =>
+                {
+                    b.HasOne("DeviceManagement.Models.Device", "Device")
+                        .WithMany("MaintenanceHistories")
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Device");
+                });
+
+            modelBuilder.Entity("DeviceManagement.Models.Device", b =>
+                {
+                    b.Navigation("MaintenanceHistories");
                 });
 #pragma warning restore 612, 618
         }

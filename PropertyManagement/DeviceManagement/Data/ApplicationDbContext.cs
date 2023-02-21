@@ -20,4 +20,5 @@ public class ApplicationDbContext :DbContext
     }
 
     public DbSet<Device> Devices { get; set; }
+    public DbSet<MaintenanceHistory> MaintenanceHistories { get; set; }
 }

@@ -1,12 +1,29 @@
+using AuthService.Models;
+using AuthService.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthService.Controllers;
 
-public class DeviceController : Controller
+[ApiController]
+[Route("[controller]")]
+public class DeviceController : ControllerBase
 {
-    // GET
-    public IActionResult Index()
+    private readonly IMapper _mapper;
+    private readonly GrpcDeviceService _grpcDeviceService;
+    
+    public DeviceController(IMapper mapper, GrpcDeviceService grpcDeviceService)
     {
-        return View();
+        _mapper = mapper;
+        _grpcDeviceService = grpcDeviceService;
+    }
+    
+    // GET
+    [HttpGet]
+    public async Task<ActionResult<Device>> GetDevice()
+    {
+        var device = _grpcDeviceService.ReturnAllDevices();
+        Console.WriteLine("Device: " + device);
+        return Ok(device);
     }
 }

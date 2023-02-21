@@ -1,17 +1,38 @@
 syntax = "proto3";
-option csharp_namespace = "AuthService";
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "AuthService.Protos";
 
 service GrpcDevice {
-  rpc getDevice (GetAllDeviceRequest) returns (GetAllResponse) {};
+  rpc getDevice (GetDeviceRequest) returns (GetDeviceResponse) {};
 }
 
-message GetAllDeviceRequest{}
+message GetDeviceRequest{}
 
-message GrpcDeviceModel{
+message GetDeviceResponse{
+  PDevice devices = 1;
+}
+
+message PDevice {
   int32 id = 1;
-  string name = 2;
-}
+  string Name = 2;
+  string Sku = 3;
+  string Description = 4;
+  string ImageUrl = 5;
+  float Latitude = 6;
+  float Longitude = 7;
+  string Position = 8;
+  int32 Cost = 9;
+  string Origin = 10;
+  int32 Status = 11;
+  string Type = 12;
+  string Brand = 13;
+  string Owner = 14;
+  string Manager = 15;
 
-message GetAllResponse {
-  repeated GrpcDeviceModel devices = 1;
+  int64 PurchaseDate = 16;
+  int64 WarrantyDate = 17;
+  int64 LastServiceDate = 18;
+  int64 InstallationDate = 19;
+  int64 CreatedAt = 20;
+  int64 UpdatedAt = 21;
 }
