@@ -27,51 +27,17 @@ public class DeviceService
         return device;
     }
 
-    public async Task<Response<DeviceResponse>> GetById(int id)
+    public async Task<Device> GetById(int id)
     {
-        var res = await _context.Devices.Select(c => new DeviceResponse()
-        {
-            Id = c.Id,
-            Name = c.Name,
-            Description = c.Description,
-            Brand = c.Brand,
-            Cost = c.Cost,
-            ImageUrl = c.ImageUrl,
-            InstallationDate = c.InstallationDate,
-            LastServiceDate = c.LastServiceDate,
-            Latitude = c.Latitude,
-            Longitude = c.Longitude,
-            Manager = c.Manager,
-            Origin = c.Origin,
-            Owner = c.Owner,
-            Position = c.Position,
-            PurchaseDate = c.PurchaseDate,
-            Sku = c.Sku,
-            Status = c.Status,
-            Type = c.Type,
-            WarrantyDate = c.WarrantyDate,
-            CreatedAt = c.CreatedAt,
-            UpdatedAt = c.UpdatedAt,
-            MaintenanceHistories = c.MaintenanceHistories.Select(e => new MaintenanceResponse
-            {
-                Id = e.Id,
-                Name = e.Name
-            })
-        }).Where(c => c.Id == id).ToListAsync();
+        var res = await _context.Devices.FindAsync(id);
 
-        return new Response<DeviceResponse>(res);
+        return res;
     }
     
     public async Task<List<Device>> GetAll()
     {
-        //using linq syntax
-        var device = await (from s in _context.Devices
-                where s.Id == 10
-                select s
-            ).ToListAsync();
-
-        return device;
-        // return await _context.Devices.ToListAsync();
+        var res = await _context.Devices.Where(x => true).ToListAsync();
+        return res;
     }
     
     public async Task<Device> Update(Device device)

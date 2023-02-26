@@ -28,6 +28,4 @@ public class Device
     public DateTime InstallationDate { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-    
-    public ICollection<MaintenanceHistory> MaintenanceHistories { get; set; }
 }

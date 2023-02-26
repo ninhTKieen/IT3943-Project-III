@@ -72,45 +72,45 @@ public class DeviceController : ControllerBase
         }
     }
 
-    // [HttpPut("{id}")]
-    // public async Task<ActionResult<Device>> Update(int id, [FromBody] DeviceUpdateDto deviceUpdateDto)
-    // {
-    //     try
-    //     {
-    //         var device = await _deviceService.GetById(id);
-    //         if (device == null)
-    //         {
-    //             return NotFound(new {message = "Device not found", data = new {}});
-    //         }
-    //         _mapper.Map(deviceUpdateDto, device);
-    //         await _deviceService.Update(device);
-    //         return Ok(new {data = device, message = "Device updated successfully"});
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         Console.WriteLine(e);
-    //         throw;
-    //     }
-    // }
-    //
-    // [HttpDelete("id")]
-    // public async Task<ActionResult> Delete(int id)
-    // {
-    //     try
-    //     {
-    //         var device = await _deviceService.GetById(id);
-    //         if (device == null)
-    //         {
-    //             return NotFound(new {message = "Device not found", data = new {}});
-    //         }
-    //         
-    //         await _deviceService.Delete(device);
-    //         return Ok(new {data = new {}, message = "Device deleted successfully"});
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         Console.WriteLine(e);
-    //         throw;
-    //     }
-    // }
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Device>> Update(int id, [FromBody] DeviceUpdateDto deviceUpdateDto)
+    {
+        try
+        {
+            var device = await _deviceService.GetById(id);
+            if (device == null)
+            {
+                return NotFound(new {message = "Device not found", data = new {}});
+            }
+            _mapper.Map(deviceUpdateDto, device);
+            await _deviceService.Update(device);
+            return Ok(new {data = device, message = "Device updated successfully"});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    [HttpDelete("id")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        try
+        {
+            var device = await _deviceService.GetById(id);
+            if (device == null)
+            {
+                return NotFound(new {message = "Device not found", data = new {}});
+            }
+            
+            await _deviceService.Delete(device);
+            return Ok(new {data = new {}, message = "Device deleted successfully"});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }
