@@ -33,4 +33,19 @@ public class MaintenanceController : ControllerBase
             throw;
         }
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<MaintenanceHistory>> GetById(int id)
+    {
+        try
+        {
+            var result = await _maintenanceService.GetById(id);
+            return Ok(new {data=result, message = "Device get successfully"});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using DeviceManagement.Data;
 using DeviceManagement.IOC;
 using DeviceManagement.Services;
@@ -5,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x=>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 //extra configuration
 await builder.Services.Register(builder.Configuration);

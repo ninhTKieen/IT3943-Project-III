@@ -21,5 +21,5 @@ public class MaintenanceHistory
     public DateTime UpdatedAt { get; set; }
     
     public int DeviceId { get; set; }
-    public Device Device { get; set; }
+    public virtual Device Device { get; set; }
 }
