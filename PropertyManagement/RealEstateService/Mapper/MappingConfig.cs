@@ -12,6 +12,9 @@ public class MappingConfig
         {
             cfg.CreateMap<RealEstateType, RealEstateTypeDTO>();
             cfg.CreateMap<RealEstateTypeDTO, RealEstateType>();
+
+            cfg.CreateMap<RealEstate, RealEstateDTO>();
+            cfg.CreateMap<RealEstateDTO, RealEstate>();
         });
     }
 }
