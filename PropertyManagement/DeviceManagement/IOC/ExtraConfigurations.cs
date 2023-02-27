@@ -11,7 +11,6 @@ public static class ExtraConfigurations
         //configure
         ConfigureSwagger(services, configuration);
         
-        
         //grpc
         services.AddGrpc(options =>
         {
