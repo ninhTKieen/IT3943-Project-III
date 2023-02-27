@@ -43,7 +43,6 @@ public class DeviceService
     public async Task<Device> Update(Device device)
     {
         var test = _context.Devices.Update(device);
-        Console.WriteLine("test: " + test);
         await _context.SaveChangesAsync();
         return device;
     }

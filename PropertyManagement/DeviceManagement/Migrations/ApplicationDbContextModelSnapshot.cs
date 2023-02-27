@@ -19,6 +19,31 @@ namespace DeviceManagement.Migrations
                 .HasAnnotation("ProductVersion", "6.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("DeviceManagement.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("DeviceManagement.Models.Device", b =>
                 {
                     b.Property<int>("Id")
@@ -26,6 +51,7 @@ namespace DeviceManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Brand")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Cost")
@@ -35,9 +61,11 @@ namespace DeviceManagement.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("InstallationDate")
@@ -53,6 +81,7 @@ namespace DeviceManagement.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Manager")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
@@ -60,24 +89,29 @@ namespace DeviceManagement.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Origin")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Owner")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Position")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Sku")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -101,6 +135,7 @@ namespace DeviceManagement.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("DeviceId")
@@ -113,9 +148,11 @@ namespace DeviceManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Note")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("StartDate")
@@ -140,17 +177,12 @@ namespace DeviceManagement.Migrations
             modelBuilder.Entity("DeviceManagement.Models.MaintenanceHistory", b =>
                 {
                     b.HasOne("DeviceManagement.Models.Device", "Device")
-                        .WithMany("MaintenanceHistories")
+                        .WithMany()
                         .HasForeignKey("DeviceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Device");
-                });
-
-            modelBuilder.Entity("DeviceManagement.Models.Device", b =>
-                {
-                    b.Navigation("MaintenanceHistories");
                 });
 #pragma warning restore 612, 618
         }
