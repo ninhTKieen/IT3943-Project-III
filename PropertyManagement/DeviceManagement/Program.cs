@@ -5,9 +5,11 @@ using DeviceManagement.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+//
+// builder.Services.AddControllers().AddJsonOptions(x=>
+//     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddControllers().AddJsonOptions(x=>
-    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 //extra configuration
 await builder.Services.Register(builder.Configuration);

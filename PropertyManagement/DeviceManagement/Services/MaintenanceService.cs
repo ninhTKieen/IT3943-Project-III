@@ -25,9 +25,31 @@ public class MaintenanceService
     public async Task<MaintenanceHistory> GetById(int id)
     {
         //read related data and filtered properties of relation entity
-        return await _context.MaintenanceHistories.Where(
-            x => x.Id == id).Include(x => x.Device).FirstOrDefaultAsync();
-        
+        return (await _context.MaintenanceHistories.Where(
+            x => x.Id == id).Include(x => x.Device).FirstOrDefaultAsync())!;
     }
     
+    public async Task <List<MaintenanceHistory>> GetAll()
+    {
+        return await _context.MaintenanceHistories.Where(x => true).ToListAsync();
+    }
+    
+    public async Task<MaintenanceHistory> Update(MaintenanceHistory maintenanceHistory)
+    {
+        var test = _context.MaintenanceHistories.Update(maintenanceHistory);
+        await _context.SaveChangesAsync();
+        return maintenanceHistory;
+    }
+    
+    public async Task Delete(MaintenanceHistory maintenanceHistory)
+    {
+        _context.MaintenanceHistories.Remove(maintenanceHistory);
+        await _context.SaveChangesAsync();
+    }
+    
+    public async Task<List<MaintenanceHistory>> GetByDeviceId(int deviceId)
+    {
+        return await _context.MaintenanceHistories.Where(x => x.DeviceId == deviceId).ToListAsync();
+    }
+
 }

@@ -14,5 +14,9 @@ public class MaintenanceProfile: Profile
             .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.Now))
             //status = inProgress if status is null
             .ForMember(dest => dest.Status, opt => opt.NullSubstitute(MaintenanceStatus.InProgress));
+        
+        CreateMap<MaintenanceUpdateDto, MaintenanceHistory>()
+            .ForMember(dest=>dest.UpdatedAt, opt => opt.MapFrom(src=>DateTime.Now))
+            .ForAllMembers(opt=>opt.Condition((src, dest, srcMember)=> srcMember != null));
     }
 }
