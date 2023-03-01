@@ -1,3 +1,0 @@
-obj/Debug/net6.0/Protos/Device.cs \
-obj/Debug/net6.0/Protos/DeviceGrpc.cs: /home/lethai/.nuget/packages/grpc.tools/2.51.0/build/native/include/google/protobuf/timestamp.proto\
- Protos/device.proto
