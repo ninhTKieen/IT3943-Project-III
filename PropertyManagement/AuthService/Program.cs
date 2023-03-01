@@ -1,3 +1,4 @@
+using AuthService.Data;
 using AuthService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddSingleton<GrpcDeviceService>();
+builder.Services.AddDbContext<ApplicationDbContext>();
+
+builder.Services.AddScoped<GrpcDeviceService>();
+builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<UserService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
