@@ -7,7 +7,15 @@ namespace AuthService.IOC;
 
 public static class ExtraConfigurations
 {
-    public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static Task Configure(this IServiceCollection services, IConfiguration configuration)
+    {
+        ConfigureSwagger(services);
+        ConfigureAuthentication(services, configuration);
+
+        return Task.CompletedTask;
+    }
+    
+    private static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(x =>
             {
@@ -29,7 +37,7 @@ public static class ExtraConfigurations
             });
     }
     
-    public static void ConfigureSwagger(this IServiceCollection services)
+    private static void ConfigureSwagger(this IServiceCollection services)
     {
         services.AddSwaggerGen(option =>
         {

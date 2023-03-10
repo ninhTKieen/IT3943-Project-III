@@ -1,10 +1,12 @@
 using AuthService.Data;
+using AuthService.IOC;
 using AuthService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+await builder.Services.Configure(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -28,6 +30,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,12 +1,14 @@
 using AuthService.Models;
 using AuthService.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthService.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize]
 public class DeviceController : ControllerBase
 {
     private readonly IMapper _mapper;
