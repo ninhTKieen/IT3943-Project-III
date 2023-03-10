@@ -2,11 +2,13 @@ using AutoMapper;
 using DeviceManagement.Dtos;
 using DeviceManagement.Models;
 using DeviceManagement.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeviceManagement.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/category")]
 public class CategoryController : Controller
 {
