@@ -1,0 +1,25 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "auth",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "Auth",
+          "Version": "1.0",
+          "Url": "http://localhost:5205/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "device",
+      "Config": [
+        {
+          "Name": "Device",
+          "Version": "1.0",
+          "Url": "http://localhost:5205/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}

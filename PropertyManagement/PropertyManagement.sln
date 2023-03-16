@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagement", "DeviceM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGateway", "APIGateway\APIGateway.csproj", "{E271A49C-4AEE-4019-AD5E-BA1BCBC04692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagement", "AssetManagement\AssetManagement.csproj", "{92531D1F-CF67-459B-AC52-5E13CA5B2635}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E271A49C-4AEE-4019-AD5E-BA1BCBC04692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E271A49C-4AEE-4019-AD5E-BA1BCBC04692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E271A49C-4AEE-4019-AD5E-BA1BCBC04692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92531D1F-CF67-459B-AC52-5E13CA5B2635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92531D1F-CF67-459B-AC52-5E13CA5B2635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92531D1F-CF67-459B-AC52-5E13CA5B2635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92531D1F-CF67-459B-AC52-5E13CA5B2635}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

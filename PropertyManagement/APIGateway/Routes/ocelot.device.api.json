@@ -1,0 +1,46 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/device",
+      "DownstreamScheme": "http",
+      "TransformByOcelotConfig":false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/device",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "device"
+    },
+    {
+      "DownstreamPathTemplate": "/api/category",
+      "DownstreamScheme": "http",
+      "TransformByOcelotConfig":false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/category",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "device"
+    },
+    {
+      "DownstreamPathTemplate": "/api/category",
+      "DownstreamScheme": "http",
+      "TransformByOcelotConfig":false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/category",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "device"
+    }
+  ]
+}
