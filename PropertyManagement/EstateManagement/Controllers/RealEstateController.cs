@@ -2,6 +2,7 @@ using AutoMapper;
 using EstateManagement.Services;
 using EstateManagement.Dtos;
 using EstateManagement.Models;
+using EstateManagement.Constants;
 using Microsoft.AspNetCore.Mvc;
 namespace EstateManagement.Controllers;
 
@@ -47,6 +48,11 @@ public class RealEstateController: Controller
             {
                 return NotFound(new {message = "Real estate type not found", data = new {}});
             }
+            //check status not in enum
+            if (!Enum.IsDefined(typeof(EstateStatus), realEstateCreateDto.Status))
+            {
+                return BadRequest(new {message = "Status not available", data = new {}});
+            }
             var realEstate = _mapper.Map<RealEstate>(realEstateCreateDto);
             realEstate.type = realEstateType;
             var newRealEstate = await _realEstateServices.AddRealEstate(realEstate);
@@ -68,36 +74,20 @@ public class RealEstateController: Controller
             return NotFound(new {message = "Real estate not found", data = new {}});
         }
         // check all number type is null
-        if (realEstateUpdateDto.Area == null)
-        {
-            realEstateUpdateDto.Area = realEstate.Area;
-        }
-        if (realEstateUpdateDto.TypeId == null)
-        {
-            realEstateUpdateDto.TypeId = realEstate.type.Id;
-        }
-        if (realEstateUpdateDto.Latitude == null)
-        {
-            realEstateUpdateDto.Latitude = realEstate.Latitude;
-        }
-        if (realEstateUpdateDto.Longitude == null)
-        {
-            realEstateUpdateDto.Longitude = realEstate.Longitude;
-        }
-        if (realEstateUpdateDto.Status == null)
-        {
-            realEstateUpdateDto.Status = realEstate.Status;
-        }
-        if (realEstateUpdateDto.CurrentPrice == null)
-        {
-            realEstateUpdateDto.CurrentPrice = realEstate.CurrentPrice;
-        }
-        if (realEstateUpdateDto.Tax == null)
-        {
-            realEstateUpdateDto.Tax = realEstate.Tax;
-        }
+        realEstateUpdateDto.Area ??= realEstate.Area;
+        realEstateUpdateDto.TypeId ??= realEstate.type.Id;
+        realEstateUpdateDto.Latitude ??= realEstate.Latitude;
+        realEstateUpdateDto.Longitude ??= realEstate.Longitude;
+        realEstateUpdateDto.Status ??= realEstate.Status;
+        realEstateUpdateDto.CurrentPrice ??= realEstate.CurrentPrice;
+        realEstateUpdateDto.Tax ??= realEstate.Tax;
         
         _mapper.Map(realEstateUpdateDto, realEstate);
+        //check status not in enum
+        if (realEstateUpdateDto.Status != null && !Enum.IsDefined(typeof(EstateStatus), realEstateUpdateDto.Status))
+        {
+            return BadRequest(new {message = "Status not available", data = new {}});
+        }
         //check if real estate type is changed
         if (realEstateUpdateDto.TypeId != null && realEstateUpdateDto.TypeId != realEstate.type.Id)
         {

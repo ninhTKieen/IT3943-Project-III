@@ -2,6 +2,7 @@ using AutoMapper;
 using EstateManagement.Dtos;
 using EstateManagement.Models;
 using EstateManagement.Services;
+using EstateManagement.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EstateManagement.Controllers;
@@ -34,6 +35,7 @@ public class MaintenanceHistoryController: Controller
         {
             return NotFound(new {message = "Maintenance history not found", data = new {}});
         }
+        //check type is not in enum
         return Ok(new {data = maintenanceHistory, message = "Maintenance history found"});
     }
     
@@ -44,6 +46,10 @@ public class MaintenanceHistoryController: Controller
         if (realEstate == null)
         {
             return BadRequest(new {message = "Real estate not found"});
+        }
+        if (!Enum.IsDefined(typeof(MaintenanceType), maintenanceHistoryCreate.Type))
+        {
+            return BadRequest(new {message = "Type not available", data = new {}});
         }
         var maintenanceHistory = _mapper.Map<MaintenanceHistory>(maintenanceHistoryCreate);
         maintenanceHistory.RealEstate = realEstate;
@@ -60,18 +66,17 @@ public class MaintenanceHistoryController: Controller
         {
             return NotFound();
         }
-        if (maintenanceHistoryDto.Type == null)
+        // Check if type is not in enum
+        if (maintenanceHistoryDto.Type != null)
         {
-            maintenanceHistoryDto.Type = maintenanceHistory.Type;
+            if (!Enum.IsDefined(typeof(MaintenanceType), maintenanceHistoryDto.Type))
+            {
+                return BadRequest(new {message = "Type not available", data = new {}});
+            }
         }
-        if (maintenanceHistoryDto.RealEstateId == null)
-        {
-            maintenanceHistoryDto.RealEstateId = maintenanceHistory.RealEstateId;
-        }
-        if (maintenanceHistoryDto.Expenses == null)
-        {
-            maintenanceHistoryDto.Expenses = maintenanceHistory.Expenses;
-        }
+        maintenanceHistoryDto.Type ??= maintenanceHistory.Type;
+        maintenanceHistoryDto.RealEstateId ??= maintenanceHistory.RealEstateId;
+        maintenanceHistoryDto.Expenses ??= maintenanceHistory.Expenses;
         
         // Map properties from maintenanceHistoryDto to maintenanceHistory object
         _mapper.Map<MaintenanceHistoryUpdateDto, MaintenanceHistory>(maintenanceHistoryDto, maintenanceHistory);
