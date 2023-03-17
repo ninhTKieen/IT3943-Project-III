@@ -1,0 +1,30 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/File",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/file/get",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "auth"
+    },
+    {
+      "DownstreamPathTemplate": "/File",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/file/upload",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "auth"
+    }
+  ]
+}

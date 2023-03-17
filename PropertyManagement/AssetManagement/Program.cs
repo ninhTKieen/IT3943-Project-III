@@ -1,10 +1,11 @@
 using AssetManagement.Data;
+using AssetManagement.IOC;
 using AssetManagement.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+await builder.Services.Register(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

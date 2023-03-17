@@ -1,36 +1,19 @@
 using System.Text;
-using DeviceManagement.Data;
-using DeviceManagement.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-namespace DeviceManagement.IOC;
+namespace AssetManagement.IOC;
 
-public static class ExtraConfigurations
+public static class ExtraConfiguration
 {
+    
     public static async Task Register(this IServiceCollection services, IConfiguration configuration)
     {
         //configure
         ConfigureSwagger(services);
         ConfigureAuthentication(services, configuration);
-        //grpc
-        services.AddGrpc(options =>
-        {
-            options.EnableDetailedErrors = true;
-        });
-        
-        //mapper
-        services.AddDbContext<ApplicationDbContext>();
-        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-        
-        //add service
-        services.AddScoped<DeviceService>();
-        services.AddScoped<MaintenanceService>();
-        services.AddScoped<CategoryService>();
     }
-
-    
     private static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(x =>
@@ -56,7 +39,7 @@ public static class ExtraConfigurations
     {
         services.AddSwaggerGen(option =>
         {
-            option.SwaggerDoc("v1", new OpenApiInfo { Title = "Device Management Service API", Version = "v1" });
+            option.SwaggerDoc("v1", new OpenApiInfo { Title = "Asset Management Service API", Version = "v1" });
             option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 In = ParameterLocation.Header,
@@ -82,6 +65,4 @@ public static class ExtraConfigurations
             });
         });
     }
-    
-    
 }

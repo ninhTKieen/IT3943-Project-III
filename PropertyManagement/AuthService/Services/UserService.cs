@@ -30,4 +30,23 @@ public class UserService
         var res = await _context.Users.Where(t => t.Email == email).FirstOrDefaultAsync();
         return res;
     }
+    
+    public async Task<User> Get(int id)
+    {
+        var res = await _context.Users.Where(t => t.Id == id).FirstOrDefaultAsync();
+        return res;
+    }
+    
+    public async Task Update(User user)
+    {
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+    }
+    
+    public async Task Delete(int id)
+    {
+        var user = await _context.Users.Where(t => t.Id == id).FirstOrDefaultAsync();
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+    }
 }
