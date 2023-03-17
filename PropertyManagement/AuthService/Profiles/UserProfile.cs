@@ -21,5 +21,10 @@ public class UserProfile : Profile
             //keep old values if new values are null
             .ForAllMembers(cfg=>cfg.Condition((src, dest, srcMember) => srcMember != null))
             ;
+
+        CreateMap<AdminUpdateProfileDto, User>()
+            .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => DateTime.Now))
+
+            .ForAllMembers(cfg => cfg.Condition((src, dest, srcMember) => srcMember != null));
     }
 }

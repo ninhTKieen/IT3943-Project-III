@@ -22,7 +22,7 @@ public class UserController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpPut("/update")]
+    [HttpPut("update")]
     public async Task<ActionResult<User>> Update([FromBody] UpdateProfileDto userUpdateDto)
     {
         try
@@ -45,5 +45,44 @@ public class UserController : ControllerBase
         }
     }
     
-    
+    [HttpGet("profile")]
+    public async Task<ActionResult<User>> GetProfile()
+    {
+        try
+        {
+            //parse int from claim
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
+            
+            var user = await _userService.Get(userId);
+            if (user == null)
+            {
+                return NotFound(new {message = "User not found", data = new {}});
+            }
+            return Ok(new {data = user, message = "User found"});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    [HttpPut("change-password")]
+    public async Task<ActionResult> ChangePassword([FromBody] ChangePasswordDto changePasswordDto)
+    {
+        try
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.Name));
+            var user = await _userService.Get(userId);
+
+            await _userService.ChangePassword(user, changePasswordDto.NewPassword);
+
+            return Ok(new {data = new {}, message = "Password changed successfully"});
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

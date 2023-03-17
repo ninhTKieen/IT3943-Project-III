@@ -36,7 +36,13 @@ public class UserService
         var res = await _context.Users.Where(t => t.Id == id).FirstOrDefaultAsync();
         return res;
     }
-    
+
+    public async Task<List<User>> Get()
+    {
+        var res = await _context.Users.ToListAsync();
+        return res;
+    }
+
     public async Task Update(User user)
     {
         _context.Users.Update(user);
@@ -47,6 +53,16 @@ public class UserService
     {
         var user = await _context.Users.Where(t => t.Id == id).FirstOrDefaultAsync();
         _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task ChangePassword(User user, string newPassword)
+    {
+        PasswordHasher<User?> passwordHasher = new();
+        string hashedPassword = passwordHasher.HashPassword(user, newPassword);
+        
+        user.Password = hashedPassword;
+        _context.Users.Update(user);
         await _context.SaveChangesAsync();
     }
 }

@@ -19,3 +19,9 @@ public class UpdateProfileDto
     public string? Gender { get; set; }
     public string? Birthday { get; set; }
 }
+
+public class AdminUpdateProfileDto
+{
+    public string? Status { get; set; }
+    public string? Role { get; set; }
+}
