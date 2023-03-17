@@ -23,12 +23,15 @@ builder.Services.AddCors(opt =>
             .AllowAnyMethod();
     });
 });
-builder.Services.AddScoped<GrpcDeviceService>();
+// builder.Services.AddScoped<GrpcDeviceService>();
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddGrpc(opt => opt.EnableDetailedErrors = true);
 
 var app = builder.Build();
+
+app.MapGrpcService<GrpcUserService>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

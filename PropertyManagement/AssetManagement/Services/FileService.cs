@@ -1,4 +1,5 @@
 using AssetManagement.Data;
+using AssetManagement.Dto;
 using AssetManagement.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -59,8 +60,9 @@ public class FileService :IFileService
         }
     }
 
-    public async Task<AttachmentFile> AddAttachmentFile(IFormFile _formFile)
+    public async Task<AttachmentFile> AddAttachmentFile(FileUploadRequestDto fileUploadRequestDto)
     {
+        var _formFile = fileUploadRequestDto.File;
         try
         {
             string fileName = UploadedFile(_formFile);
@@ -72,8 +74,10 @@ public class FileService :IFileService
                 Length = _formFile.Length,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now,
-                CreatedBy = "Admin",
-                ModifiedBy = "Admin",
+                CreatedBy = "User",
+                ModifiedBy = "User",
+                Category = fileUploadRequestDto.Category,
+                Sku = fileUploadRequestDto.Sku
             };
             _context.AttachmentFiles.Add(attachmentFile);
             await _context.SaveChangesAsync();
@@ -84,5 +88,25 @@ public class FileService :IFileService
             Console.WriteLine(e);
             throw;
         }
+    }
+    
+    public Task<List<AttachmentFile>> GetAll()
+    {
+        return _context.AttachmentFiles.ToListAsync();
+    }
+    
+    public Task<AttachmentFile?> GetById(long id)
+    {
+        return _context.AttachmentFiles
+            .Include(c=>c.FilePermissions)
+            .Where(x => x.Id == id)
+            .SingleOrDefaultAsync();
+    }
+    
+    public Task Delete(long id)
+    {
+        var attachmentFile = _context.AttachmentFiles.Where(x => x.Id == id).SingleOrDefaultAsync();
+        _context.AttachmentFiles.Remove(attachmentFile.Result);
+        return _context.SaveChangesAsync();
     }
 }

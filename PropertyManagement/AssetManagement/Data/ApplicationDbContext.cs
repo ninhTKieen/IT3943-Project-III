@@ -20,4 +20,6 @@ public class ApplicationDbContext :DbContext
     }
     
     public DbSet<AttachmentFile> AttachmentFiles { get; set; }
+    public DbSet<FilePermission> FilePermissions { get; set; }
+    public DbSet<Permission> Permissions { get; set; }
 }

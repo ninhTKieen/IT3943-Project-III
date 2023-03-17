@@ -1,0 +1,21 @@
+syntax = "proto3";
+option csharp_namespace = "AssetManagement.Protos";
+
+service GrpcUser {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {};
+}
+
+message GetUserRequest{
+  int32 id = 1;
+}
+
+message GetUserResponse{
+  PUser user = 1;
+}
+
+message PUser {
+  int32 id = 1;
+  string LastName = 2;
+  string Username = 3;
+  string Role = 4;
+}

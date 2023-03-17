@@ -10,7 +10,7 @@ namespace DeviceManagement.Controllers;
 [ApiController]
 [Authorize]
 [Route("api/category")]
-public class CategoryController : Controller
+public class CategoryController : ControllerBase
 {
     private readonly CategoryService _categoryService;
     private readonly IMapper _mapper;

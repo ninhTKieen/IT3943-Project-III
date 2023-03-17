@@ -1,8 +1,5 @@
-using System.Text.Json.Serialization;
-using DeviceManagement.Data;
 using DeviceManagement.IOC;
 using DeviceManagement.Services;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 //

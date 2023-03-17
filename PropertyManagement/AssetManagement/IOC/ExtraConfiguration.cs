@@ -8,12 +8,16 @@ namespace AssetManagement.IOC;
 public static class ExtraConfiguration
 {
     
-    public static async Task Register(this IServiceCollection services, IConfiguration configuration)
+    public static Task Register(this IServiceCollection services, IConfiguration configuration)
     {
         //configure
         ConfigureSwagger(services);
         ConfigureAuthentication(services, configuration);
+
+        return Task.CompletedTask;
     }
+
+    
     private static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(x =>
