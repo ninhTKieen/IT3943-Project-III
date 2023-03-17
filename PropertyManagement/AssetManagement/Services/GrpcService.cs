@@ -32,6 +32,7 @@ public class GrpcService
         try
         {
             var reply = client.GetUser(request);
+            // if(reply)
             //log
             Console.WriteLine("Devices: " + reply.User);
             var result = new GrpcUserM

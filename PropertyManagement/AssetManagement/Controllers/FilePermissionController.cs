@@ -21,6 +21,16 @@ public class FilePermissionController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<FilePermission>> CreateFilePermission([FromBody] CreateFilePermissionDto filePermission)
     {
+        var user = _grpcService.GetUser(filePermission.UserId);
+        if (user.Id == 0)
+        {
+            return NotFound(new
+            {
+                data = new { },
+                message = "User not found"
+            });
+        }
+
         var newFilePermission = new FilePermission()
         {
             CreatedAt = DateTime.Now,
@@ -63,9 +73,6 @@ public class FilePermissionController : ControllerBase
     {
         var filePermissions = await _filePermissionService.GetAll();
 
-        var test = _grpcService.GetUser(1);
-        Console.WriteLine("test" + test);
-        
         return Ok(new
         {
             data = filePermissions,

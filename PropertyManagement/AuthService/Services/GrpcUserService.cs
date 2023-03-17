@@ -15,27 +15,40 @@ public class GrpcUserService : GrpcUser.GrpcUserBase
         _mapper = mapper;
     }
 
-    public override Task<GetUserResponse> GetUser(GetUserRequest request, ServerCallContext context)
+    public override async Task<GetUserResponse> GetUser(GetUserRequest request, ServerCallContext context)
     {
-        var response = new GetUserResponse();
-        var user = _context.Users.Find(request.Id);
+        try
+        {
+            var response = new GetUserResponse();
+            var user = await _context.Users.FindAsync(request.Id);
         
-        if (user == null)
-        {
-            response.User.Id = 0;
-            response.User.Role = "none";
-            response.User.Username = "none";
-            response.User.LastName = "none";
-            return Task.FromResult(response);
+            if (user == null)
+            {
+                response.User = new PUser
+                {
+                    Id = 0,
+                    Role = "none",
+                    Username = "None",
+                    LastName = "None"
+                };
+                return (response);
+            }
+            else
+            {
+                response.User = new PUser
+                {
+                    Id = user.Id,
+                    Role = user.Role,
+                    Username = user.Username,
+                    LastName = user.LastName
+                };
+                return (response);
+            }
         }
-
-        response.User = new PUser
+        catch (Exception e)
         {
-            Id = user.Id,
-            Role = user.Role,
-            Username = user.Username,
-            LastName = user.LastName
-        };
-        return Task.FromResult(response);
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }
